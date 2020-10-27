@@ -3,7 +3,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pathlib import Path
 
-from app import app
+from app import app, init_db
 
 
 def test_index():
@@ -15,4 +15,5 @@ def test_index():
 
 
 def test_database():
+    init_db()
     assert Path("flaskr.db").is_file()
