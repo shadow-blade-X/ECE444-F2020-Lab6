@@ -1,9 +1,7 @@
-import sqlite3
 from pathlib import Path
 import os
 from flask import (
     Flask,
-    g,
     render_template,
     request,
     session,

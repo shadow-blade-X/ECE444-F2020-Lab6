@@ -1,11 +1,17 @@
-import os, sys
-import pytest, json
+import os
+import sys
+import pytest
+import json
+
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pathlib import Path
 
-from app import app, db
+from app import (
+    app,
+    db,
+)
 
 TEST_DB = "test.db"
 
