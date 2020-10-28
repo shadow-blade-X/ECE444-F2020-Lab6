@@ -1,5 +1,6 @@
 import os, sys
 import pytest, json
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pathlib import Path
@@ -76,6 +77,7 @@ def test_messages(client):
     assert b"&lt;Hello&gt;" in rv.data
     assert b"<strong>HTML</strong> allowed here" in rv.data
 
+
 def test_delete_message(client):
     """Ensure the messages are being deleted"""
     rv = client.get("/delete/1")
@@ -85,7 +87,8 @@ def test_delete_message(client):
     rv = client.get("/delete/1")
     data = json.loads(rv.data)
     assert data["status"] == 1
-    
+
+
 def test_search(client):
     login(client, app.config["USERNAME"], app.config["PASSWORD"])
     client.post(
@@ -93,8 +96,6 @@ def test_search(client):
         data=dict(title="Hello", text="random text"),
         follow_redirects=True,
     )
-    rv=client.get(
-        "/search/?query=Hello"
-    )
+    rv = client.get("/search/?query=Hello")
     assert b"random text" in rv.data
     assert b"Hello" in rv.data
